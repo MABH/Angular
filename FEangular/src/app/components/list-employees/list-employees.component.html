@@ -1,0 +1,33 @@
+<div class="row" style="padding-top: 10px;">
+    <div class="col-lg-6">
+        <h3>Employees List</h3>
+    </div>>
+    <div class="col-lg-6">
+        <button class="btn brtn-primary float-right" [routerLink] = "['/add']">New Employee</button>
+    </div>
+</div>
+<div class="spinner-border text-primary" role="status" *ngIf = "loading">
+    <span class="sr-only">Loading...</span>
+  </div>
+<br>
+<table class="table table-sm table-hover">
+    <thead>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Position</th>
+        <th>Salary</th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of listEmployees">
+            <td><a [routerLink]="['/show/', employee.id]">{{employee.name}}</a></td>
+            <td>{{employee.surname}}</td>
+            <td>{{employee.position}}</td>
+            <td>{{employee.salary}}</td>
+            <td><button class="btn bttn-primary btn-sm float-right" [routerLink]="['/edit/', employee.id]"> Edit</button></td>
+            <td><button class="btn bttn-danger btn-sm float-right" (click)="delete(employee.id)">Delete</button></td>
+        </tr>
+        
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+<h3> {{accion}} Employee</h3>
+<div class="spinner-border text-primary" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+  </div>
+<form [formGroup] = "employees" (ngSubmit)="saveEmployee()">
+    <div class="form-group row">
+        <label class="control-label col-md-12">Name</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="name">
+        </div>
+        <span class="text-danger ml-3" *ngIf="employees.get('name').hasError('required') && employees.get('name').touched">
+            Name is required
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Surname</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="surname">
+        </div>
+        <span class="text-danger ml-3" *ngIf="employees.get('surname').hasError('required') && employees.get('surname').touched">
+            Surname is required
+        </span>
+    </div><div class="form-group row">
+        <label class="control-label col-md-12">Position</label>
+        <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="position">
+        </div>
+        <span class="text-danger ml-3" *ngIf="employees.get('position').hasError('required') && employees.get('position').touched">
+            Position is required
+        </span>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-12">Salary</label>
+        <div class="col-md-12">
+            <input type="text" inputmode="numeric" pattern="[0-9]*" digitOnly class="form-control" formControlName="salary">
+        </div>
+        <span class="text-danger ml-3" *ngIf="employees.get('salary').hasError('required') && employees.get('salary').touched">
+            Salary is required
+        </span>
+    </div>
+    <div class="form-group">
+        <button class ="btn btn-success float-right" [disabled] = "employees.invalid">Accept</button>
+        <button [routerLink]="['/']" class ="btn btn-success float-left">Cancel</button>
+    </div>
+</form>
